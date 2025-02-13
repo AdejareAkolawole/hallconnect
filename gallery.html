@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Halls Concept Co-operative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffffff, #f5f7fa);
+            min-height: 100vh;
+        }
+
+        .gallery-container {
+            padding: 120px 2rem 2rem;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .gallery-subtitle {
+            font-size: 1.2rem;
+            color: var(--ash);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            animation: slideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            aspect-ratio: 1;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover .gallery-image img {
+            transform: scale(1.1);
+        }
+
+        .gallery-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(2, 48, 71, 0.9), transparent);
+            color: white;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .gallery-card-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-title {
+                font-size: 2rem;
+            }
+
+            .gallery-container {
+                padding: 100px 1rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo"></div>
+        </div>
+        <nav class="nav-links">
+            <div class="dropdown">
+                <a href="index.html">Home</a>
+                <div class="dropdown-content">
+                    <a href="#contact">Contact</a>
+                    <a href="newsletter.html">Subscription</a>
+                    <a href="newsletter.html">Newsletter</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#services">Services</a>
+                <div class="dropdown-content">
+                    <a href="The 6 HCMC Tarbenacle.html">The 6 HCMC Tarbenacle</a>
+    
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#members">Members</a>
+                <div class="dropdown-content">
+                    <a href="members.html">See Our Members</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#resources">Resources</a>
+                <div class="dropdown-content">
+                    <a href="copermanual.html">CoperManual</a>
+                    <a href="gallery.html">Our Gallery</a>
+    
+                    </a>
+    
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#blog">Blog</a>
+            </div>
+            
+        </nav>
+        <a href="login.html">
+            <button class="login-btn desktop-login">Login</button>
+        </a>
+    
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    <div class="gallery-container">
+        <div class="gallery-header">
+            <h1 class="gallery-title">Our Excellence Gallery</h1>
+            <p class="gallery-subtitle">Explore our collection of achievements and milestones in cooperative banking</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-card" style="animation-delay: 0.1s;">
+                <div class="gallery-image">
+                    <img src="h1.jpg" alt="Investment Success">
+                </div>
+                <div class="gallery-content">
+                    <h3 class="gallery-card-title">Investment Success</h3>
+                    <p class="gallery-card-text">Celebrating outstanding returns for our members.</p>
+                </div>
+            </div>
+
+            <div class="gallery-card" style="animation-delay: 0.2s;">
+                <div class="gallery-image">
+                    <img src="h2.jpg" alt="Community Impact">
+                </div>
+                <div class="gallery-content">
+                    <h3 class="gallery-card-title">Community Impact</h3>
+                    <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                </div>
+            </div>
+            <div class="gallery-card" style="animation-delay: 0.2s;">
+                <div class="gallery-image">
+                    <img src="h3.jpg" alt="Community Impact">
+                </div>
+                <div class="gallery-content">
+                    <h3 class="gallery-card-title">Community Impact</h3>
+                    <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                </div>
+            </div>
+            <div class="gallery-card" style="animation-delay: 0.2s;">
+                <div class="gallery-image">
+                    <img src="h5.jpg" alt="Community Impact">
+                </div>
+                <div class="gallery-content">
+                    <h3 class="gallery-card-title">Community Impact</h3>
+                    <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                </div>
+            </div>
+            <div class="gallery-card" style="animation-delay: 0.2s;">
+                <div class="gallery-image">
+                    <img src="h6.jpg" alt="Community Impact">
+                </div>
+                <div class="gallery-content">
+                    <h3 class="gallery-card-title">Community Impact</h3>
+                    <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                </div>
+            </div>
+            <div class="gallery-card" style="animation-delay: 0.2s;">
+                <div class="gallery-image">
+                    <img src="/api/placeholder/800/800" alt="Community Impact">
+                </div>
+                <div class="gallery-content">
+                    <h3 class="gallery-card-title">Community Impact</h3>
+                    <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                </div>
+            </div>
+             <div class="gallery-card" style="animation-delay: 0.2s;">
+                <div class="gallery-image">
+                    <img src="/api/placeholder/800/800" alt="Community Impact">
+                </div>
+                <div class="gallery-content">
+                    <h3 class="gallery-card-title">Community Impact</h3>
+                    <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                </div>
+            </div>
+             <div class="gallery-card" style="animation-delay: 0.2s;">
+                <div class="gallery-image">
+                    <img src="/api/placeholder/800/800" alt="Community Impact">
+                </div>
+                <div class="gallery-content">
+                    <h3 class="gallery-card-title">Community Impact</h3>
+                    <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                </div>
+                <div class="gallery-card" style="animation-delay: 0.2s;">
+                    <div class="gallery-image">
+                        <img src="/api/placeholder/800/800" alt="Community Impact">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-card-title">Community Impact</h3>
+                        <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                    </div>
+                </div>
+                <div class="gallery-card" style="animation-delay: 0.2s;">
+                    <div class="gallery-image">
+                        <img src="/api/placeholder/800/800" alt="Community Impact">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-card-title">Community Impact</h3>
+                        <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                    </div>
+                </div>
+                <div class="gallery-card" style="animation-delay: 0.2s;">
+                    <div class="gallery-image">
+                        <img src="/api/placeholder/800/800" alt="Community Impact">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-card-title">Community Impact</h3>
+                        <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                    </div>
+                </div>
+                <div class="gallery-card" style="animation-delay: 0.2s;">
+                    <div class="gallery-image">
+                        <img src="/api/placeholder/800/800" alt="Community Impact">
+                    </div>
+                    <div class="gallery-content">
+                        <h3 class="gallery-card-title">Community Impact</h3>
+                        <p class="gallery-card-text">Making a difference through cooperative funding.</p>
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>  <!-- Add more gallery cards as needed following the same structure -->
+       

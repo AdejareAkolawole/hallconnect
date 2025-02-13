@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members - Halls Concept Co-operative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Previous styles remain the same until members-grid */
+        :root {
+            --light-blue: #8ECAE6;
+            --dark-blue: #023047;
+            --silver: #E5E5E5;
+            --ash: #666666;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #023047, #8ECAE6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Updated members-grid for 3x3 layout */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .member-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* New styles for circular profile image */
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--light-blue);
+        }
+
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 0 10px;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 8px;
+        }
+
+        .member-role {
+            color: var(--light-blue);
+            font-weight: 500;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .member-bio {
+            color: var(--ash);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .member-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 8px;
+            background: var(--silver);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 0.9rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--ash);
+        }
+
+        @media (max-width: 1024px) {
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="logo-container">
+        <div class="logo"></div>
+    </div>
+    <nav class="nav-links">
+        <div class="dropdown">
+            <a href="index.html">Home</a>
+
+        </div>
+
+</header>
+
+    <div class="container">
+        <div class="members-header">
+            <h1>Our Members</h1>
+            <p>Meet the amazing individuals who make up our cooperative community</p>
+        </div>
+
+        <div class="members-grid">
+            <!-- Member Card 1 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="mr badmus.jpg" alt="mr badmus" class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Bola Badmus</h3>
+                    <div class="member-role">Founder</div>
+                    <p class="member-bio">Leading financial expert with over 15 years of experience in cooperative
+                        banking.</p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">10+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">500+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Card 2 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="kelechi.png" alt="Kelechi chima" class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Kelechi Chima</h3>
+                    <div class="member-role">Director IT operations</div>
+                    <p class="member-bio">Director of IT Operations overseeing technology strategy, infrastructure, and digital transformation across multiple companies.</p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">8+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">300+</div>
+                            <div class="stat-label">Clients</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Card 3 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="ade.jpg" alt="Adejare Akolawole" class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Adejare Akolawole</h3>
+                    <div class="member-role">Lead Web Developer </div>
+                    <p class="member-bio">Web Development Specialist managing and optimizing digital presence across multiple companies.</p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">7+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">10+</div>
+                            <div class="stat-label">Clients</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Card 4 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="iyanu.jpg" alt="Adebiyi Iyanuoluwa" class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Adebiyi Iyanuoluwa</h3>
+                    <div class="member-role">Director Finance</div>
+                    <p class="member-bio">"Director of Finance overseeing financial strategy, budgeting, and risk management for the company."</p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">6+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">200+</div>
+                            <div class="stat-label">Events</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Card 5 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="popsman.jpg" alt="Popoola Abdulhazeem"class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Popoola Abdulhazeem</h3>
+                    <div class="member-role">Director Legal services</div>
+                    <p class="member-bio">"Head of Legal Services providing expert guidance on corporate compliance, contracts, and risk management."</p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">5+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">400+</div>
+                            <div class="stat-label">Analyses</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Card 6 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="issac.jpg" alt="Issac" class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">David Isaac Adeza </h3>
+                    <div class="member-role">Secretary</div>
+                    <p class="member-bio">Manages day-to-day operations and strategic initiatives for growth.</p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">15+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">Programs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Card 7 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="/api/placeholder/400/400" alt="James Wilson" class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">James Wilson</h3>
+                    <div class="member-role">Education Coordinator</div>
+                    <p class="member-bio">Leads financial education and member development programs.</p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">7+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">1000+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Card 8 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="/api/placeholder/400/400" alt="Nina Patel" class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Nina Patel</h3>
+                    <div class="member-role">Innovation Lead</div>
+                    <p class="member-bio">Drives technological advancement and digital transformation initiatives.</p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">5+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">20+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member Card 9 -->
+            <div class="member-card">
+                <div class="profile-image-container">
+                    <img src="/api/placeholder/400/400" alt="Robert Thompson" class="member-image">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Robert Thompson</h3>
+                    <div class="member-role">Sustainability Officer</div>
+                    <p class="member-bio">Champions environmental and social responsibility in cooperative practices.
+                    </p>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">11+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">30+</div>
+                            <div class="stat-label">Initiatives</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</body>
+
+</html>

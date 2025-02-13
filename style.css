@@ -597,3 +597,80 @@ body.is-homepage .container-ball {
     position: relative;
     z-index: 2;
 }
+/* Mobile Navigation and Login Button Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--white);
+        flex-direction: column;
+        padding: 2rem;
+        transition: left 0.3s;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    /* Position login button within nav menu */
+    .login-btn {
+        position: relative;
+        /* Remove fixed positioning */
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        margin: 1rem 0;
+        order: 1;
+        /* Add to nav links flow */
+        display: block;
+    }
+
+    /* Ensure login button appears within nav menu */
+    header .login-btn {
+        position: static;
+        /* Override any absolute/fixed positioning */
+        display: none;
+        /* Hide the original button */
+    }
+
+    /* Show login button only within nav when menu is active */
+    .nav-links.active .login-btn {
+        display: block;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        display: none;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+
+    /* Remove previous mobile login container if it exists */
+    .mobile-login-container {
+        display: none;
+    }
+
+    /* Adjust padding to accommodate the login button */
+    .nav-links {
+        padding-bottom: 2rem;
+    }
+}
+
+/* Update hamburger menu z-index */
+.hamburger {
+    z-index: 1002;
+}
+
+/* Ensure proper stacking context */
+header {
+    z-index: 1001;
+}

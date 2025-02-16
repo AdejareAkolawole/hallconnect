@@ -65,6 +65,7 @@ header {
 .nav-links {
     display: flex;
     gap: 2rem;
+    
 }
 
 .nav-links a {
@@ -110,6 +111,7 @@ header {
     cursor: pointer;
     font-weight: 500;
     transition: transform 0.3s;
+    margin-left: 300px;
 }
 
 .login-btn:hover {
@@ -386,6 +388,53 @@ footer {
     padding-right: 50px;
 }
 
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+
+/* Update these styles in style.css */
+.top-marquee-container {
+    background: var(--light-blue);
+    padding: 10px 0;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    z-index: 999;
+    margin-top: 80px;
+    /* This accounts for the fixed header height */
+}
+
+.top-marquee-text {
+    color: black;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+    display: inline-block;
+    padding-right: 50px;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Adjust the hero section to remove overlap */
+#hero {
+    padding-top: 60px;
+    /* Reduced top padding since marquee will take space */
+}
 @keyframes marquee {
     0% {
         transform: translateX(100%);
@@ -673,4 +722,36 @@ body.is-homepage .container-ball {
 /* Ensure proper stacking context */
 header {
     z-index: 1001;
+}
+
+/* About Button Styles */
+.about-btn {
+    display: inline-block;
+    background: var(--gradient);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-top: 2rem;
+    transition: transform 0.3s;
+}
+
+.about-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Map Container Styles */
+.map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Restore Login Button Display */
+.login-btn {
+    display: inline-block !important;
+    /* Force display on desktop */
 }

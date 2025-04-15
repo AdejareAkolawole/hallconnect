@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooperator Dashboard - Unity Cooperative</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo"></div>
+        </div>
+        <nav class="nav-links">
+            <a href="#home" class="nav-item">Home</a>
+            <div class="dropdown">
+                <a href="#about" class="nav-item">About</a>
+                <div class="dropdown-content">
+                    <a href="#mission">Mission</a>
+                    <a href="#team">Team</a>
+                    <a href="#history">History</a>
+                </div>
+            </div>
+            <a href="#services" class="nav-item">Services</a>
+            <a href="#contact" class="nav-item">Contact</a>
+            <a href="#logout" class="login-btn">Logout</a>
+        </nav>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard">
+        <div class="dashboard-container">
+            <!-- Profile Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-card">
+                    <div class="profile-avatar" id="profile-avatar" role="img" aria-label="Profile picture"></div>
+                    <input type="file" id="profile-upload" accept="image/*" aria-label="Upload profile picture" hidden>
+                    <button class="quick-action-btn secondary" id="upload-btn" aria-label="Change profile picture" data-lang-key="upload-btn">Change Picture</button>
+                    <h3 id="profile-name">Jane Doe</h3>
+                    <p id="profile-id">Member ID: COOP12345</p>
+                    <p id="profile-joined">Joined: January 15, 2020</p>
+                    <button class="quick-action-btn secondary" id="edit-profile-btn" aria-label="Edit profile" data-lang-key="edit-profile-btn">Edit Profile</button>
+                </div>
+                <div class="contribution-tracker">
+                    <h3 data-lang-key="contribution-title">Monthly Contribution</h3>
+                    <p id="contribution-status" data-lang-key="contribution-status">You’ve met your goal!</p>
+                    <div class="progress-bar">
+                        <div id="contribution-progress" style="width: 100%"></div>
+                    </div>
+                    <p id="contribution-amount">₦5,000 / ₦5,000</p>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <h1 class="gradient-text" data-lang-key="dashboard-title">Cooperator Dashboard</h1>
+
+                <!-- Controls Bar -->
+                <div class="controls-bar">
+                    <div class="language-toggle">
+                        <label for="language-select" data-lang-key="language-label">Language:</label>
+                        <select id="language-select" aria-label="Select language">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                        </select>
+                    </div>
+                    <div class="currency-toggle">
+                        <label for="currency-select" data-lang-key="currency-label">Currency:</label>
+                        <select id="currency-select" aria-label="Select currency">
+                            <option value="NGN">NGN</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="notifications-container">
+                    <button class="notifications-toggle" aria-expanded="false" data-lang-key="notifications">🔔 Notifications (0)</button>
+                    <div class="notifications-panel" role="region" aria-label="Notifications"></div>
+                </div>
+
+                <!-- Balance Overview -->
+                <div class="balance-card">
+                    <h2 data-lang-key="balance-title">Account Balance</h2>
+                    <p class="balance-amount" id="balance-amount">₦5,230.45</p>
+                    <p class="balance-status positive" id="balance-status" data-lang-key="balance-status">Healthy Balance</p>
+                    <div class="balance-actions">
+                        <button class="quick-action-btn" id="deposit-btn" data-lang-key="deposit-btn">Deposit Funds</button>
+                        <button class="quick-action-btn secondary" data-lang-key="support-btn">Contact Support</button>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3 data-lang-key="quick-actions-title">Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-card" onclick="document.getElementById('loan-form').scrollIntoView({behavior: 'smooth'})">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span data-lang-key="action-loan">Request Loan</span>
+                        </button>
+                        <button class="action-card" onclick="document.getElementById('savings-goal-form').scrollIntoView({behavior: 'smooth'})">
+                            <i class="fas fa-piggy-bank"></i>
+                            <span data-lang-key="action-savings">Set Savings Goal</span>
+                        </button>
+                        <button class="action-card" onclick="alert('Coming soon!')">
+                            <i class="fas fa-money-check-alt"></i>
+                            <span data-lang-key="action-withdraw">Withdraw Funds</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loan Calculator -->
+                <div class="calculator-container">
+                    <h3 data-lang-key="calculator-title">Loan Calculator</h3>
+                    <div class="form-group">
+                        <input type="number" id="calc-amount" placeholder=" " value="1000" aria-label="Loan amount">
+                        <label for="calc-amount" data-lang-key="calc-amount-label">Loan Amount</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="calc-rate" placeholder=" " value="5" step="0.1" aria-label="Interest rate">
+                        <label for="calc-rate" data-lang-key="calc-rate-label">Interest Rate (%)</label>
+                    </div>
+                    <div class="form-group">
+                        <select id="calc-term" aria-label="Repayment term">
+                            <option value="6" data-lang-key="term-6">6 Months</option>
+                            <option value="12" selected data-lang-key="term-12">12 Months</option>
+                            <option value="24" data-lang-key="term-24">24 Months</option>
+                        </select>
+                    </div>
+                    <button class="submit-btn calculate-btn" data-lang-key="calculate-btn">Calculate</button>
+                    <p id="calc-result" data-lang-key="calc-result">Estimated Payment: ₦86.67/month</p>
+                </div>
+
+                <!-- Balance Trend Chart -->
+                <div class="chart-container">
+                    <h3 data-lang-key="chart-title">Balance Trend</h3>
+                    <canvas id="balanceChart" role="img" aria-label="Balance trend chart"></canvas>
+                </div>
+
+                <!-- Transactions -->
+                <div class="transactions-container">
+                    <h3 data-lang-key="transactions-title">Recent Transactions</h3>
+                    <div class="filter-bar">
+                        <select id="transaction-filter" aria-label="Filter transactions">
+                            <option value="all" data-lang-key="filter-all">All</option>
+                            <option value="deposit" data-lang-key="filter-deposit">Deposits</option>
+                            <option value="withdrawal" data-lang-key="filter-withdrawal">Withdrawals</option>
+                            <option value="loan" data-lang-key="filter-loan">Loan Payments</option>
+                        </select>
+                        <button class="quick-action-btn export-btn" data-lang-key="export-btn">Export as CSV</button>
+                    </div>
+                    <div class="transaction-table">
+                        <table role="grid" aria-label="Transaction history">
+                            <thead>
+                                <tr>
+                                    <th scope="col" data-lang-key="table-date">Date</th>
+                                    <th scope="col" data-lang-key="table-type">Type</th>
+                                    <th scope="col" data-lang-key="table-amount">Amount</th>
+                                    <th scope="col" data-lang-key="table-desc">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transaction-body"></tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <button class="quick-action-btn secondary" id="prev-page" aria-label="Previous page" data-lang-key="prev-page">Previous</button>
+                        <span id="page-info" data-lang-key="page-info">Page 1 of 1</span>
+                        <button class="quick-action-btn secondary" id="next-page" aria-label="Next page" data-lang-key="next-page">Next</button>
+                    </div>
+                </div>
+
+                <!-- Loan Request Form -->
+                <div class="loan-form-container">
+                    <h3 data-lang-key="loan-form-title">Request a Loan</h3>
+                    <form id="loan-form" role="form" aria-label="Loan request form">
+                        <div class="form-group">
+                            <input type="number" id="loan-amount" placeholder=" " required aria-label="Loan amount">
+                            <label for="loan-amount" data-lang-key="loan-amount-label">Loan Amount</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="repayment-term" required aria-label="Repayment term">
+                                <option value="" disabled selected data-lang-key="select-term">Select Term</option>
+                                <option value="6" data-lang-key="term-6">6 Months</option>
+                                <option value="12" data-lang-key="term-12">12 Months</option>
+                                <option value="24" data-lang-key="term-24">24 Months</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="loan-purpose" placeholder=" " aria-label="Loan purpose"></textarea>
+                            <label for="loan-purpose" data-lang-key="loan-purpose-label">Purpose (Optional)</label>
+                        </div>
+                        <button type="submit" class="submit-btn" data-lang-key="submit-loan-btn">Submit Request</button>
+                    </form>
+                </div>
+
+                <!-- Loan Status -->
+                <div class="loan-status-container">
+                    <h3 data-lang-key="loan-status-title">Loan Status</h3>
+                    <div class="loan-status-grid" id="loan-status-grid"></div>
+                </div>
+
+                <!-- Savings Goal Tracker -->
+                <div class="savings-goal-container">
+                    <h3 data-lang-key="savings-goal-title">Savings Goal Tracker</h3>
+                    <form id="savings-goal-form" role="form" aria-label="Savings goal form">
+                        <div class="form-group">
+                            <input type="text" id="savings-name" placeholder=" " required aria-label="Goal name">
+                            <label for="savings-name" data-lang-key="savings-name-label">Goal Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="savings-target" placeholder=" " required aria-label="Target amount">
+                            <label for="savings-target" data-lang-key="savings-target-label">Target Amount</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="savings-deadline" placeholder=" " aria-label="Deadline">
+                            <label for="savings-deadline" data-lang-key="savings-deadline-label">Deadline (Optional)</label>
+                        </div>
+                        <button type="submit" class="submit-btn" data-lang-key="set-goal-btn">Set Goal</button>
+                    </form>
+                    <div id="savings-goals" class="savings-goals-grid"></div>
+                </div>
+
+                <!-- Member Benefits -->
+                <div class="benefits-container">
+                    <h3 data-lang-key="benefits-title">Member Benefits</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h4 data-lang-key="benefit-dividends">Annual Dividends</h4>
+                            <p data-lang-key="benefit-dividends-desc">Earn dividends based on cooperative profits.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <i class="fas fa-users"></i>
+                            <h4 data-lang-key="benefit-community">Community Events</h4>
+                            <p data-lang-key="benefit-community-desc">Join workshops and networking events.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <i class="fas fa-book"></i>
+                            <h4 data-lang-key="benefit-education">Financial Education</h4>
+                            <p data-lang-key="benefit-education-desc">Access free financial literacy programs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Settings -->
+                <div class="settings-container">
+                    <h3 data-lang-key="settings-title">Settings</h3>
+                    <form id="settings-form" role="form" aria-label="User settings form">
+                        <div class="form-group">
+                            <input type="email" id="settings-email" placeholder=" " value="jane.doe@example.com" aria-label="Email address">
+                            <label for="settings-email" data-lang-key="email-label">Email Address</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-notifications" data-lang-key="notifications-label">
+                                <input type="checkbox" id="settings-notifications" checked aria-label="Enable notifications">
+                                Enable Notifications
+                            </label>
+                        </div>
+                        <button type="submit" class="submit-btn" data-lang-key="save-settings-btn">Save Settings</button>
+                    </form>
+                </div>
+
+                <!-- Deposit Modal -->
+                <div class="modal" id="deposit-modal" role="dialog" aria-labelledby="deposit-modal-title" aria-hidden="true">
+                    <div class="modal-content">
+                        <button class="modal-close" aria-label="Close deposit modal">×</button>
+                        <h2 id="deposit-modal-title" data-lang-key="deposit-modal-title">Deposit Funds</h2>
+                        <form id="deposit-form" role="form" aria-label="Deposit form">
+                            <div class="form-group">
+                                <input type="number" id="deposit-amount" placeholder=" " required aria-label="Deposit amount">
+                                <label for="deposit-amount" data-lang-key="deposit-amount-label">Amount</label>
+                            </div>
+                            <button type="submit" class="submit-btn" data-lang-key="deposit-submit-btn">Deposit</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Loan Details Modal -->
+                <div class="modal" id="loan-details-modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+                    <div class="modal-content">
+                        <button class="modal-close" aria-label="Close loan details modal">×</button>
+                        <h2 id="modal-title" data-lang-key="modal-title">Loan Details</h2>
+                        <div id="modal-body">
+                            <p><strong data-lang-key="modal-id">Loan ID:</strong> <span id="modal-loan-id"></span></p>
+                            <p><strong data-lang-key="modal-amount">Amount:</strong> <span id="modal-loan-amount"></span></p>
+                            <p><strong data-lang-key="modal-term">Term:</strong> <span id="modal-loan-term"></span></p>
+                            <p><strong data-lang-key="modal-status">Status:</strong> <span id="modal-loan-status"></span></p>
+                            <p><strong data-lang-key="modal-date">Request Date:</strong> <span id="modal-loan-date"></span></p>
+                            <div class="progress-container">
+                                <p><strong data-lang-key="modal-progress">Repayment Progress:</strong></p>
+                                <div class="progress-bar">
+                                    <div id="modal-progress-bar"></div>
+                                </div>
+                                <p id="modal-progress-text"></p>
+                            </div>
+                            <h3 data-lang-key="modal-history">Repayment History</h3>
+                            <table role="grid" aria-label="Repayment history">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-lang-key="history-date">Date</th>
+                                        <th scope="col" data-lang-key="history-amount">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modal-repayment-history"></tbody>
+                            </table>
+                            <button class="quick-action-btn" id="download-loan-btn" data-lang-key="download-loan-btn">Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dark Mode Toggle -->
+                <div class="dark-mode-toggle">
+                    <label for="dark-mode" data-lang-key="dark-mode-label">Dark Mode</label>
+                    <input type="checkbox" id="dark-mode" aria-label="Toggle dark mode">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p data-lang-key="footer">© 2025 Unity Cooperative. All rights reserved.</p>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

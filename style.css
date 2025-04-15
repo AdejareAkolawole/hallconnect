@@ -24,24 +24,13 @@ body {
 
 /* Bouncing Balls Animation */
 @keyframes bounce {
-
     0%,
     100% {
         transform: translateY(0);
     }
-
     50% {
         transform: translateY(-100px);
     }
-}
-
-.logo {
-    width: 100px;
-    height: 70px;
-    background-image: url('logo-full.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 /* Header Styles */
@@ -50,50 +39,77 @@ header {
     padding: 1rem 5%;
     position: fixed;
     width: 100%;
-    /* height: 70px; */
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* align-content: center; */
 }
 
+/* Logo Styles */
 .logo-container {
     width: 150px;
 }
 
+.logo {
+    width: 100px;
+    height: 70px;
+    background-image: url('logo-full.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Navigation Styles */
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    
 }
 
-.nav-links a {
+.nav-item {
     color: var(--dark-blue);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
 }
 
-.nav-links a:hover {
-    color: var(--light-blue);
+.nav-item:hover {
+    color: var(--white);
+    background-color: var(--light-blue);
 }
 
 .dropdown {
     position: relative;
 }
 
+.dropdown .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown .nav-item::after {
+    content: '\f078'; /* Font Awesome chevron-down icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-left: 0.3rem;
+    font-size: 0.8rem;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
+    top: 100%;
+    left: 0;
     background: var(--white);
-    min-width: 200px;
+    min-width: 180px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    z-index: 1001;
 }
 
 .dropdown:hover .dropdown-content {
@@ -101,38 +117,85 @@ header {
 }
 
 .dropdown-content a {
-    padding: 12px 16px;
+    color: var(--dark-blue);
+    padding: 10px 15px;
     display: block;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--silver);
 }
 
 .login-btn {
     background: var(--gradient);
     color: var(--white);
-    border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 25px;
-    cursor: pointer;
+    text-decoration: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
     font-weight: 500;
     transition: transform 0.3s;
-    margin-left: 300px;
+    margin-left: 1.5rem;
 }
 
 .login-btn:hover {
     transform: translateY(-2px);
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--dark-blue);
+    position: absolute;
+    transition: all 0.3s;
+}
+
+.hamburger span:first-child {
+    top: 0;
+}
+
+.hamburger span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger span:last-child {
+    bottom: 0;
+}
+
+.hamburger.open span:first-child {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:last-child {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
 /* Hero Section */
-/* Hero Section - Extended Background */
 #hero {
     background-color: var(--light-blue);
     padding: 150px 5% 160px;
-    /* Increased bottom padding to extend background */
     min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
-    /* margin-top: 60px; */
-    /* padding-block: 100px; */
 }
 
 .hero-content {
@@ -190,7 +253,6 @@ header {
     grid-template-columns: repeat(6, 1fr);
     gap: 2rem;
     margin-top: 3rem;
-   
 }
 
 .stat-box {
@@ -375,12 +437,11 @@ footer {
     padding: 2rem;
 }
 
-/* Marquee Container - Blue Background & White Text */
+/* Marquee Container */
 .marquee-container {
     background: var(--light-blue);
     padding: 10px 0;
     margin-top: -80px;
-    /* Negative margin to pull it up into the hero background */
     overflow: hidden;
     width: 100%;
     position: relative;
@@ -399,233 +460,12 @@ footer {
     0% {
         transform: translateX(100%);
     }
-
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-
-
-/* Update these styles in style.css */
-.top-marquee-container {
-    background: var(--light-blue);
-    padding: 10px 0;
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    z-index: 999;
-    margin-top: 80px;
-    /* This accounts for the fixed header height */
-}
-
-.top-marquee-text {
-    color: black;
-    white-space: nowrap;
-    animation: marquee 20s linear infinite;
-    display: inline-block;
-    padding-right: 50px;
-}
-
-@keyframes marquee {
-    0% {
-        transform: translateX(100%);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-/* Adjust the hero section to remove overlap */
-#hero {
-    padding-top: 60px;
-    /* Reduced top padding since marquee will take space */
-}
-@keyframes marquee {
-    0% {
-        transform: translateX(100%);
-    }
-
     100% {
         transform: translateX(-100%);
     }
 }
 
 /* Ball Container */
-.container-ball {
-    position: absolute;
-    /* Changed from fixed to absolute */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-#ballCanvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    opacity: 0.8;
-}
-
-
-
-body.is-homepage .container-ball {
-    display: block;
-}
-.blog-icon {
-    position: relative;
-    color: #5b6e83;
-    /* Adjust icon color */
-    margin-bottom: 15px;
-    top: 15px;
-    margin-left: 9px;
-    /* Shifts icon slightly to the right */
-    display: block;
-    text-align: center;
-}
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: var(--white);
-        flex-direction: column;
-        padding: 2rem;
-        transition: left 0.3s;
-    }
-
-    .nav-links.active {
-        left: 0;
-    }
-
-    .dropdown-content {
-        position: static;
-        box-shadow: none;
-        display: none;
-    }
-
-    .dropdown.active .dropdown-content {
-        display: block;
-    }
-
-    .hero-content,
-    .about-container,
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
-
-    .desktop-login {
-        display: none;
-    }
-
-    .gradient-text {
-        font-size: 2.5rem;
-    }
-
-    .profile-image {
-        max-width: 80%;
-        margin: 0 auto;
-    }
-
-    .love-section {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .stats-container {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-card {
-        padding: 1.5rem;
-    }
-}
-
-/* Hamburger Menu */
-.hamburger {
-    display: none;
-    cursor: pointer;
-    width: 30px;
-    height: 20px;
-    position: relative;
-    z-index: 1001;
-}
-
-.hamburger span {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: var(--dark-blue);
-    position: absolute;
-    transition: all 0.3s;
-}
-
-.hamburger span:first-child {
-    top: 0;
-}
-
-.hamburger span:nth-child(2) {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.hamburger span:last-child {
-    bottom: 0;
-}
-
-.hamburger.open span:first-child {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.open span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.open span:last-child {
-    transform: rotate(-45deg) translate(7px, -6px);
-}
-
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-}
-/* Hero Section - Mobile Image Centering */
-@media (max-width: 768px) {
-    .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .profile-image {
-        max-width: 80%;
-        margin: 0 auto;
-        display: block;
-    }
-}
-/* About Section - Hide Image on Mobile */
-@media (max-width: 768px) {
-    .about-container {
-        grid-template-columns: 1fr;
-    }
-
-    .about-container img {
-        display: none;
-    }
-}
-/* Add these styles to your style.css file */
-
 .ball-container {
     position: absolute;
     top: 0;
@@ -653,8 +493,24 @@ body.is-homepage .container-ball {
     position: relative;
     z-index: 2;
 }
-/* Mobile Navigation and Login Button Styles */
+
+/* Blog Icon */
+.blog-icon {
+    position: relative;
+    color: #5b6e83;
+    margin-bottom: 15px;
+    top: 15px;
+    margin-left: 9px;
+    display: block;
+    text-align: center;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
     .nav-links {
         position: fixed;
         top: 80px;
@@ -665,70 +521,91 @@ body.is-homepage .container-ball {
         flex-direction: column;
         padding: 2rem;
         transition: left 0.3s;
-        z-index: 1000;
     }
 
     .nav-links.active {
         left: 0;
     }
 
-    /* Position login button within nav menu */
-    .login-btn {
-        position: relative;
-        /* Remove fixed positioning */
-        left: auto;
-        bottom: auto;
-        width: 100%;
-        margin: 1rem 0;
-        order: 1;
-        /* Add to nav links flow */
-        display: block;
-    }
-
-    /* Ensure login button appears within nav menu */
-    header .login-btn {
-        position: static;
-        /* Override any absolute/fixed positioning */
-        display: none;
-        /* Hide the original button */
-    }
-
-    /* Show login button only within nav when menu is active */
-    .nav-links.active .login-btn {
-        display: block;
-        margin-top: 1rem;
-        width: 100%;
+    .nav-item {
+        padding: 1rem;
+        font-size: 1.2rem;
+        text-align: center;
     }
 
     .dropdown-content {
         position: static;
         box-shadow: none;
         display: none;
+        background: var(--silver);
+        border-radius: 5px;
+        margin: 0.5rem 0;
     }
 
     .dropdown.active .dropdown-content {
         display: block;
     }
 
-    /* Remove previous mobile login container if it exists */
-    .mobile-login-container {
+    .dropdown-content a {
+        padding: 0.8rem 1rem;
+        text-align: center;
+    }
+
+    .login-btn {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    .hero-content,
+    .about-container,
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .gradient-text {
+        font-size: 2.5rem;
+    }
+
+    .profile-image {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Hero Section - Mobile Image Centering */
+@media (max-width: 768px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .profile-image {
+        max-width: 80%;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+/* About Section - Hide Image on Mobile */
+@media (max-width: 768px) {
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-container img {
         display: none;
     }
-
-    /* Adjust padding to accommodate the login button */
-    .nav-links {
-        padding-bottom: 2rem;
-    }
-}
-
-/* Update hamburger menu z-index */
-.hamburger {
-    z-index: 1002;
-}
-
-/* Ensure proper stacking context */
-header {
-    z-index: 1001;
 }
 
 /* About Button Styles */
@@ -756,10 +633,3 @@ header {
     margin-bottom: 2rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-
-/* Restore Login Button Display */
-.login-btn {
-    display: inline-block !important;
-    /* Force display on desktop */
-}
-
